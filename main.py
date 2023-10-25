@@ -39,12 +39,9 @@ while True:
     # Werte lesen
     newtemp = dht22_sensor.temperature()
     newhumi = dht22_sensor.humidity()
-    # Werte ausgeben    
     
     epd.image1Gray_Landscape.fill(0xff)
     #epd.image1Gray_Portrait.fill(0xff)
-    #epd.image4Gray.fill(0xff)
-      
     
     #heading
     epd.image1Gray_Landscape.text("Temperatur", marginLeftCol1, marginTop, epd.black)
