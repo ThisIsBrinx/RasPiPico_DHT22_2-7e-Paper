@@ -45,9 +45,6 @@ while True:
     newtemp = dht22_sensor.temperature()
     newhumi = dht22_sensor.humidity()
 
-    print(newtemp)
-    print(newhumi)
-
     if newtemp > tempMax:
         tempMax = newtemp
     
@@ -75,10 +72,7 @@ while True:
     temp.append(newtemp)
     humi.append(newhumi)
 
-    print("request: " + str(request))
-
     while i < request:
-        print("in")
         j = request - i
 
         epd.image1Gray_Landscape.text("-" + str(i) + "m", marginLeftNumber, marginTop + (lineSpace + (lineSpace * i)), epd.black)
@@ -86,6 +80,8 @@ while True:
         epd.image1Gray_Landscape.text(str(humi[j-1]) + "%", marginLeftCol2, marginTop + (lineSpace + (lineSpace * i)), epd.black)
         
         i=i+1
+
+    #epd.image1Gray_Landscape.line(5,5 , 10,10,5)
 
     epd.image1Gray_Landscape.text("MinT:", 1, marginTop + (lineSpace + (lineSpace * 10)-13), epd.black)
     epd.image1Gray_Landscape.text(str(tempMin) + "C", 1, marginTop + (lineSpace + (lineSpace * 10)-3), epd.black)
@@ -100,7 +96,6 @@ while True:
     #epd.EPD_2IN7_4Gray_Display(epd.buffer_4Gray)
     
     if request >= maxMessurement:
-        print("true")
         temp.pop(0)
         humi.pop(0)
         request = request - 1
